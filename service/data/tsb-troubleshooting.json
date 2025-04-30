@@ -1,0 +1,589 @@
+{
+  "id": "tsb-door-problems",
+  "title": "Self-Service Portal von TSB",
+  "description": "Fehlerbaum für Türstörungen",
+  "start_node": "root",
+  "nodes": {
+    "root": {
+      "id": "root",
+      "type": "decision",
+      "text": "Beschreiben Sie bitte Ihr Problem:",
+      "options": [
+        {
+          "text": "Tür schließt nicht",
+          "next_node": "door_not_closing"
+        },
+        {
+          "text": "Tür öffnet nicht",
+          "next_node": "door_not_opening"
+        }
+      ]
+    },
+    "door_not_closing": {
+      "id": "door_not_closing",
+      "type": "decision",
+      "text": "Gehen Sie zu Ihrem Display-Programm-Schalter (DPS), Sie finden diesen Schalter an der Wand direkt bei Ihrer Tür. Zeigt der DPS einen Fehlercode an?",
+      "image": "dps.jpg",
+      "options": [
+        {
+          "text": "Ja, es wird ein Fehlercode angezeigt.",
+          "next_node": "error_code_input"
+        },
+        {
+          "text": "Nein, es wird kein Fehlercode angezeigt.",
+          "next_node": "no_error_code_closing"
+        },
+        {
+          "text": "Ich finde den DPS nicht.",
+          "next_node": "check_obstacles"
+        }
+      ]
+    },
+    "door_not_opening": {
+      "id": "door_not_opening",
+      "type": "decision",
+      "text": "Gehen Sie zu Ihrem Display-Programm-Schalter (DPS), Sie finden diesen Schalter an der Wand direkt bei Ihrer Tür. Zeigt der DPS einen Fehlercode an?",
+      "image": "dps.jpg",
+      "options": [
+        {
+          "text": "Ja, es wird ein Fehlercode angezeigt.",
+          "next_node": "error_code_input"
+        },
+        {
+          "text": "Nein, es wird kein Fehlercode angezeigt.",
+          "next_node": "check_program_switch"
+        },
+        {
+          "text": "Ich finde den DPS nicht.",
+          "next_node": "check_obstacles"
+        }
+      ]
+    },
+    "error_code_input": {
+      "id": "error_code_input",
+      "type": "error_code_input",
+      "text": "Bitte geben Sie Ihren Fehlercode ein:",
+      "available_error_codes": [
+        "10",
+        "12",
+        "13",
+        "19",
+        "36",
+        "37",
+        "38",
+        "40",
+        "51",
+        "61",
+        "64",
+        "65",
+        "70",
+        "72"
+      ]
+    },
+    "error_code_10": {
+      "id": "error_code_10",
+      "type": "error_code_details",
+      "error_code": "10",
+      "description": "Drehgeber Signal Fehlerhaft",
+      "problem": "Tür schließt nicht / öffnet nicht",
+      "context": "Es kann sein, dass die Tür aus mechanischen Gründen schwergängig läuft.",
+      "next_node": "power_off_sequence"
+    },
+    "error_code_12": {
+      "id": "error_code_12",
+      "type": "error_code_details",
+      "error_code": "12",
+      "description": "Motor 1 Defekt",
+      "problem": "Tür schließt nicht",
+      "context": "Es kann ein mechanisches oder elektrisches Problem vorhanden sein.",
+      "next_node": "power_off_sequence"
+    },
+    "error_code_13": {
+      "id": "error_code_13",
+      "type": "error_code_details",
+      "error_code": "13",
+      "description": "SIS1 - Sicherheitssensor schließen 1 fehlerhaft",
+      "problem": "Tür schließt nicht",
+      "context": "Sensor defekt oder eine Ansteurung länger als 4 Minuten.",
+      "next_node": "check_sensor_sequence"
+    },
+    "error_code_19": {
+      "id": "error_code_19",
+      "type": "error_code_details",
+      "error_code": "19",
+      "description": "SIS2 - Sicherheitssensor schließen 2 fehlerhaft",
+      "problem": "Tür schließt nicht",
+      "context": "Sensor defekt oder eine Ansteurung länger als 4 Minuten.",
+      "next_node": "check_sensor_sequence"
+    },
+    "error_code_36": {
+      "id": "error_code_36",
+      "type": "error_code_details",
+      "error_code": "36",
+      "description": "Steuerung - Redundanz: Interner Redundanzfehler der Steuerung",
+      "problem": "Tür schließt nicht",
+      "context": "Es kann ein mechanisches oder elektrisches Problem vorhanden sein.",
+      "next_node": "power_off_sequence"
+    },
+    "error_code_37": {
+      "id": "error_code_37",
+      "type": "error_code_details",
+      "error_code": "37",
+      "description": "KI1",
+      "problem": "Tür schließt nicht",
+      "context": "Sensor defekt oder eine Ansteurung länger als 4 Minuten.",
+      "next_node": "simple_power_cycle"
+    },
+    "error_code_38": {
+      "id": "error_code_38",
+      "type": "error_code_details",
+      "error_code": "38",
+      "description": "KI2",
+      "problem": "Tür schließt nicht",
+      "context": "Sensor defekt oder eine Ansteurung länger als 4 Minuten.",
+      "next_node": "simple_power_cycle"
+    },
+    "error_code_40": {
+      "id": "error_code_40",
+      "type": "error_code_details",
+      "error_code": "40",
+      "description": "KB - Kontaktgeber berechigt",
+      "problem": "Tür schließt nicht",
+      "context": "Ansteurung länger als 4 Minuten.",
+      "next_node": "check_signal_sequence"
+    },
+    "error_code_51": {
+      "id": "error_code_51",
+      "type": "error_code_details",
+      "error_code": "51",
+      "description": "NUR BEI LL- oder RWS-Steuerungen \nFehler an der Bremse",
+      "problem": "Tür schließt nicht",
+      "context": "Nottaste betätigt oder elektrisches Problem vorhanden.",
+      "next_node": "emergency_button_check"
+    },
+    "error_code_61": {
+      "id": "error_code_61",
+      "type": "error_code_details",
+      "error_code": "61",
+      "description": "Akkumulator defekt/leer",
+      "problem": "Tür schließt nicht",
+      "context": "Service-Einsatz erforderlich.",
+      "next_node": "service_required"
+    },
+    "error_code_64": {
+      "id": "error_code_64",
+      "type": "error_code_details",
+      "error_code": "64",
+      "description": "Öffnen bei Testung - Tür öffnet nicht in der geforderten Zeit (Nur bei FR-Türen)",
+      "problem": "Tür schließt nicht",
+      "context": "Es kann ein mechanisches oder elektrisches Problem vorhanden sein.",
+      "next_node": "power_off_sequence"
+    },
+    "error_code_65": {
+      "id": "error_code_65",
+      "type": "error_code_details",
+      "error_code": "65",
+      "description": "Programmablauf - Fehler in der internen Rechnerüberwachung",
+      "problem": "Tür schließt nicht",
+      "context": "Es kann ein mechanisches oder elektrisches Problem vorhanden sein.",
+      "next_node": "power_off_sequence"
+    },
+    "error_code_70": {
+      "id": "error_code_70",
+      "type": "error_code_details",
+      "error_code": "70",
+      "description": "DCU101 - Fehler im Steuerungsteil (nur FR-Türen)",
+      "problem": "Tür schließt nicht",
+      "context": "Es kann ein mechanisches oder elektrisches Problem vorhanden sein.",
+      "next_node": "power_off_sequence"
+    },
+    "error_code_72": {
+      "id": "error_code_72",
+      "type": "error_code_details",
+      "error_code": "72",
+      "description": "DCU101 - Motor 2 defekt",
+      "problem": "Tür schließt nicht",
+      "context": "Es kann ein mechanisches oder elektrisches Problem vorhanden sein.",
+      "next_node": "power_off_sequence"
+    },
+    "power_off_sequence": {
+      "id": "power_off_sequence",
+      "type": "action",
+      "text": "1. Strom abschalten: Gehen Sie zu Ihrem hauseigenen Sicherungskasten und stellen den Strom für die Schiebetür ab.",
+      "sequence_metadata": {
+        "total_steps": 4,
+        "current_step": 1,
+        "sequence_name": "Sequenz: Stromzufuhr zurücksetzen"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "wait_display_off"
+        }
+      ]
+    },
+    "wait_display_off": {
+      "id": "wait_display_off",
+      "type": "action",
+      "text": "2. Abwarten: Warten Sie bis der DPS aus ist und nicht mehr leuchtet.",
+      "sequence_metadata": {
+        "total_steps": 4,
+        "current_step": 2,
+        "sequence_name": "Sequenz: Stromzufuhr zurücksetzen"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "move_door_manual"
+        }
+      ]
+    },
+    "move_door_manual": {
+      "id": "move_door_manual",
+      "type": "action",
+      "text": "3. Tür von Hand schließen: Versuchen Sie die Flügel der Tür von Hand zu bewegen und zu schließen.",
+      "sequence_metadata": {
+        "total_steps": 4,
+        "current_step": 3,
+        "sequence_name": "Sequenz: Stromzufuhr zurücksetzen"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "check_movement"
+        }
+      ]
+    },
+    "check_movement": {
+      "id": "check_movement",
+      "type": "decision",
+      "text": "Die Tür lässt sich nur schwergängig bewegen.",
+      "sequence_metadata": {
+        "total_steps": 4,
+        "current_step": 4,
+        "sequence_name": "Sequenz: Stromzufuhr zurücksetzen"
+      },
+      "options": [
+        {
+          "text": "Ja",
+          "next_node": "check_obstacles"
+        },
+        {
+          "text": "Die Tür lässt sich flüssig schließen.",
+          "next_node": "restore_power"
+        }
+      ]
+    },
+    "check_sensor_sequence": {
+      "id": "check_sensor_sequence",
+      "type": "action",
+      "text": "Leuchtet die LED an einem der beiden Sensoren im Durchgangsbereich rot?",
+      "sequence_metadata": {
+        "total_steps": 1,
+        "current_step": 1,
+        "sequence_name": "Sequenz: Sensor prüfen"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "power_off_sequence"
+        }
+      ]
+    },
+    "simple_power_cycle": {
+      "id": "simple_power_cycle",
+      "type": "action",
+      "text": "1. Strom abschalten: Gehen Sie zu Ihrem hauseigenen Sicherungskasten und stellen den Strom für die Schiebetür ab.",
+      "sequence_metadata": {
+        "total_steps": 3,
+        "current_step": 1,
+        "sequence_name": "Sequenz: Tür resetten"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "wait_display_off_simple"
+        }
+      ]
+    },
+    "wait_display_off_simple": {
+      "id": "wait_display_off_simple",
+      "type": "action",
+      "text": "2. Abwarten: Warten Sie bis der DPS aus ist und nicht mehr leuchtet.",
+      "sequence_metadata": {
+        "total_steps": 3,
+        "current_step": 2,
+        "sequence_name": "Sequenz: Tür resetten"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "move_door_manual_simple"
+        }
+      ]
+    },
+    "move_door_manual_simple": {
+      "id": "move_door_manual_simple",
+      "type": "action",
+      "text": "3. Tür von Hand schließen: Versuchen Sie die Flügel der Tür von Hand zu bewegen und zu schließen.",
+      "sequence_metadata": {
+        "total_steps": 3,
+        "current_step": 3,
+        "sequence_name": "Sequenz: Tür resetten"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "restore_power"
+        }
+      ]
+    },
+    "no_dps_power_cycle": {
+      "id": "no_dps_power_cycle",
+      "type": "action",
+      "text": "1. Strom abschalten: Gehen Sie zu Ihrem hauseigenen Sicherungskasten und stellen den Strom für die Schiebetür ab.",
+      "sequence_metadata": {
+        "total_steps": 3,
+        "current_step": 1,
+        "sequence_name": "Sequenz: Tür Reset ohne DPS"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "wait_display_off_no_dps"
+        }
+      ]
+    },
+    "wait_display_off_no_dps": {
+      "id": "wait_display_off_no_dps",
+      "type": "action",
+      "text": "2. Abwarten: Warten Sie 1 Minute oder bis ggf. vorhandene Anzeigen an der Tür nicht mehr leuchten.",
+      "sequence_metadata": {
+        "total_steps": 3,
+        "current_step": 2,
+        "sequence_name": "Sequenz: Tür Reset ohne DPS"
+      },
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "restore_power"
+        }
+      ]
+    },
+    "check_signal_sequence": {
+      "id": "check_signal_sequence",
+      "type": "action",
+      "text": "Ein Signal der bauseitigen BMA / Sprechanlage / ZuKo usw. könnte Fehlerquele sein. Bauseitige Prüfung der Ansteuerungen durchführen.",
+      "sequence_metadata": {
+        "total_steps": 1,
+        "current_step": 1,
+        "sequence_name": "Sequenz: Signal prüfen"
+      },
+      "options": [
+        {
+          "text": "Ist in der Nähe des Display-Programm-Schalters an der Wand ein GEZE-Schlüselschalter vorhanden?",
+          "next_node": "test_key"
+        },
+        {
+          "text": "Kein GEZE-Schlüselschalter vorhanden",
+          "next_node": "service_required"
+        }
+      ]
+    },
+    "emergency_button_check": {
+      "id": "emergency_button_check",
+      "type": "decision",
+      "text": "Ist die NOT-Taste betätigt? (roter Schalter)",
+      "options": [
+        {
+          "text": "Ja",
+          "next_node": "release_emergency"
+        },
+        {
+          "text": "Nein",
+          "next_node": "power_off_sequence"
+        }
+      ]
+    },
+    "release_emergency": {
+      "id": "release_emergency",
+      "type": "action",
+      "text": "Bitte lösen Sie die NOT-Taste.",
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "power_off_sequence"
+        }
+      ]
+    },
+    "check_program_switch": {
+      "id": "check_program_switch",
+      "type": "decision",
+      "text": "Welche Betriebsart zeigt Ihr Display-Programm-Schalter (DPS) an?",
+      "options": [
+        {
+          "text": "LS",
+          "next_node": "ls_mode"
+        },
+        {
+          "text": "nA",
+          "next_node": "na_mode"
+        },
+        {
+          "text": "OF",
+          "next_node": "of_mode"
+        },
+        {
+          "text": "Au",
+          "next_node": "no_error_code_opening"
+        }
+      ]
+    },
+    "ls_mode": {
+      "id": "ls_mode",
+      "type": "decision",
+      "text": "Die Anzeige 'LS' bedeutet, dass für Ihre Tür die Betriebsart 'Ladenschluss' eingestellt ist. Die Tür öffnet nur bei Begehung von innen nach außen. Wechseln Sie am Programmschalter die Betriebsart, z. B. zu Automatik, und die Tür öffnet wieder.",
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "power_on_closing"
+        }
+      ]
+    },
+    "na_mode": {
+      "id": "na_mode",
+      "type": "decision",
+      "text": "Die Anzeige 'nA' bedeutet, dass für Ihre Tür die Betriebsart 'Nacht/Verriegelt' eingestellt ist. Die Tür bleibt geschlossen. Wechseln Sie am Programmschalter die Betriebsart, z. B. zu Automatik, und die Tür öffnet wieder.",
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "power_on_closing"
+        }
+      ]
+    },
+    "of_mode": {
+      "id": "of_mode",
+      "type": "decision",
+      "text": "Die Anzeige 'OF' bedeutet, dass für Ihre Tür die Betriebsart 'Aus' eingestellt ist. Der Antrieb ist funktionslos geschaltet. Wechseln Sie am Programmschalter die Betriebsart, z. B. zu Automatik, und die Tür öffnet wieder.",
+      "options": [
+        {
+          "text": "Weiter",
+          "next_node": "power_on_closing"
+        }
+      ]
+    },
+    "no_error_code_opening": {
+      "id": "no_error_code_opening",
+      "type": "decision",
+      "text": "Überprüfen Sie bitte, ob sich ein Hindernis im Fahrweg der Tür befindet (innen und außen).",
+      "options": [
+        {
+          "text": "Kein Hindernis im Fahrweg",
+          "next_node": "au_mode"
+        },
+        {
+          "text": "✅ Problem behoben",
+          "next_node": "problem_solved"
+        }
+      ]
+    },
+    "au_mode": {
+      "id": "au_mode",
+      "type": "decision",
+      "text": "Überprüfen Sie, ob die Bodenschlösser aufgeschlossen sind.",
+      "options": [
+        {
+          "text": "Bodenschlösser sind aufgeschlossen",
+          "next_node": "service_required"
+        },
+        {
+          "text": "✅ Problem behoben",
+          "next_node": "problem_solved"
+        }
+      ]
+    },
+    "no_error_code_closing": {
+      "id": "no_error_code_closing",
+      "type": "decision",
+      "text": "Gehen Sie zu Ihrem hauseigenen Sicherungskasten und stellen den Strom für die Schiebetür ab. Warten Sie danach bis der DPS aus ist und nicht mehr leuchtet.",
+      "options": [
+        {
+          "text": "Sicherung wieder einschalten",
+          "next_node": "power_on_closing"
+        }
+      ]
+    },
+    "power_on_closing": {
+      "id": "power_on_closing",
+      "type": "decision",
+      "text": "Konnte Ihr Problem behoben werden?",
+      "options": [
+        {
+          "text": "✅ Problem behoben",
+          "next_node": "problem_solved"
+        },
+        {
+          "text": "🎫 Service-Einsatz auslösen",
+          "next_node": "service_required"
+        }
+      ]
+    },
+    "check_obstacles": {
+      "id": "check_obstacles",
+      "type": "decision",
+      "text": "Überprüfen Sie bitte, ob sich ein Hindernis im Fahrweg der Tür befindet (innen und außen).",
+      "options": [
+        {
+          "text": "Problem gefunden und behoben",
+          "next_node": "restore_power"
+        },
+        {
+          "text": "Nichts gefunden",
+          "next_node": "service_required"
+        }
+      ]
+    },
+    "restore_power": {
+      "id": "restore_power",
+      "type": "action",
+      "text": "Schalten Sie den Strom am Sicherungskasten wieder ein. Die Tür wird eine \"Revisionsfahrt\" durchführen.",
+      "options": [
+        {
+          "text": "Tür funktioniert wieder",
+          "next_node": "problem_solved"
+        },
+        {
+          "text": "Fehler tritt weiterhin auf",
+          "next_node": "service_required"
+        }
+      ]
+    },
+    "test_key": {
+      "id": "test_key",
+      "type": "action",
+      "text": "Bitte einmal betätigen um Funktion zu testen.",
+      "options": [
+        {
+          "text": "✅ Problem behoben",
+          "next_node": "problem_solved"
+        },
+        {
+          "text": "❌ Problem besteht weiterhin",
+          "next_node": "service_required"
+        }
+      ]
+    },
+    "service_required": {
+      "id": "service_required",
+      "type": "end",
+      "text": "Der Fehler kann nur durch eine/n Servicetechniker/in behoben werden. Bitte lösen Sie einen Service-Einsatz aus.",
+      "options": []
+    },
+    "problem_solved": {
+      "id": "problem_solved",
+      "type": "end",
+      "text": "✅ Problem behoben: Die Tür funktioniert wieder",
+      "options": []
+    }
+  }
+}

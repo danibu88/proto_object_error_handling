@@ -1,0 +1,3 @@
+# MANIFEST.in
+include requirements.txt
+recursive-include tsb_door_service/data *.json
