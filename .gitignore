@@ -1,4 +1,197 @@
+# ============================================
+# SENSITIVE FILES - DO NOT COMMIT
+# ============================================
+
+# Environment variables (API keys, passwords)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Configuration files with secrets
+config.local.py
+secrets.yaml
+credentials.json
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Document storage (if storing locally)
+data/documents/**
+uploads/**
+storage/**
+documents/**
+
+# Specific sensitive documents
+**/sensitive/**
+**/private/**
+**/confidential/**
+
+# ============================================
+# PYTHON
+# ============================================
+
 # Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+.env
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# ============================================
+# DATABASES & STORAGE
+# ============================================
+
+# Elasticsearch data
+elasticsearch_data/
+es_data/
+
+# PostgreSQL
+postgres_data/
+pg_data/
+
+# Qdrant vector store
+qdrant_storage/
+qdrant_data/
+
+# Neo4j
+neo4j_data/
+neo4j_logs/
+
+# ============================================
+# IDEs & EDITORS
+# ============================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ============================================
+# OS FILES
+# ============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ============================================
+# DOCKER
+# ============================================
+
+# Docker volumes
+docker-compose.override.yml
+.docker/
+
+# ============================================
+# TEMPORARY FILES
+# ============================================
+
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+tmp/
+temp/
+
+# ============================================
+# STREAMLIT
+# ============================================
+
+.streamlit/secrets.toml
+
+# ============================================
+# PROJECT SPECIFIC
+# ============================================
+
+# Uploaded documents (adjust paths as needed)
+/uploaded_documents/**
+/user_uploads/**
+
+# Cached analysis results
+/cache/**
+/analysis_cache/**
+
+# Test data with sensitive info
+/test_data/sensitive/**# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class

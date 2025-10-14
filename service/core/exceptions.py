@@ -1,19 +1,19 @@
 """
 Exceptions Module
 
-This module contains all custom exceptions used throughout the TSB Door Service Assistant.
+This module contains all custom exceptions used throughout the Door Service Assistant.
 Centralizing exceptions here makes it easier to maintain consistent error handling.
 """
 
 
-class TSBServiceError(Exception):
-    """Base exception for all TSB Service related errors"""
+class ServiceError(Exception):
+    """Base exception for all Service related errors"""
 
     pass
 
 
 # Navigation Errors
-class NavigationError(TSBServiceError):
+class NavigationError(ServiceError):
     """Base exception for navigation-related errors"""
 
     pass
@@ -32,7 +32,7 @@ class NavigationStateError(NavigationError):
 
 
 # Validation Errors
-class ValidationError(TSBServiceError):
+class ValidationError(ServiceError):
     """Base exception for validation errors"""
 
     pass
@@ -57,7 +57,7 @@ class ErrorCodeValidationError(ValidationError):
 
 
 # Service Ticket Errors
-class ServiceTicketError(TSBServiceError):
+class ServiceTicketError(ServiceError):
     """Base exception for service ticket related errors"""
 
     pass
@@ -70,7 +70,7 @@ class ContactValidationError(ServiceTicketError):
 
 
 # Data Errors
-class DataError(TSBServiceError):
+class DataError(ServiceError):
     """Base exception for data-related errors"""
 
     pass
@@ -82,7 +82,7 @@ class TreeDataError(DataError):
     pass
 
 
-class ConfigurationError(TSBServiceError):
+class ConfigurationError(ServiceError):
     """Exception for configuration-related errors"""
 
     pass

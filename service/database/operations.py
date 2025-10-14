@@ -1,5 +1,3 @@
-# tsb_door_service/database/operations.py
-
 from datetime import datetime
 import pytz
 from typing import Dict, List, Any, Optional
@@ -153,7 +151,7 @@ def get_session() -> Session:
     """
     Get a database session.
     """
-    from tsb_door_service.database.database import SessionLocal
+    from door_service.database.database import SessionLocal
 
     db = SessionLocal()
     try:

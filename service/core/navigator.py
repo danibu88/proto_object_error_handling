@@ -1,7 +1,7 @@
 """
 Tree Navigator Module
 
-This module provides navigation functionality through decision trees for the TSB Door Service Assistant.
+This module provides navigation functionality through decision trees for the Door Service Assistant.
 It handles both general door problem diagnosis and specific error code resolution workflows.
 
 The module supports:
@@ -12,8 +12,8 @@ The module supports:
 - State management
 
 Dependencies:
-- tsb-door-problems.json
-- tsb-error-codes.json
+- door-problems.json
+- error-codes.json
 """
 
 from typing import Dict, List, Optional, Any, Union, TypedDict
@@ -94,7 +94,7 @@ class TreeNavigator:
     def _load_trees(self) -> None:
         """Load decision trees from JSON files"""
         try:
-            troubleshooting_path = self.data_dir / "tsb-troubleshooting.json"
+            troubleshooting_path = self.data_dir / "troubleshooting.json"
 
             if not troubleshooting_path.exists():
                 raise FileNotFoundError(f"Could not find file: {troubleshooting_path}")

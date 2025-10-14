@@ -1,6 +1,6 @@
 {
-  "id": "tsb-door-problems",
-  "title": "Self-Service Portal von TSB",
+  "id": "door-problems",
+  "title": "Self-Service Portal",
   "description": "Fehlerbaum für Türstörungen",
   "start_node": "root",
   "nodes": {

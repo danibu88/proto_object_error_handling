@@ -12,7 +12,7 @@ from service.database.database import get_db
 
 
 class TicketingDashboard:
-    """Ticketing dashboard for TSB door service"""
+    """Ticketing dashboard for door service"""
 
     ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
     TICKET_STATUSES = ["open", "assigned", "completed"]
@@ -137,7 +137,7 @@ class TicketingDashboard:
     @staticmethod
     def render_dashboard():
         """Render the main ticketing dashboard"""
-        st.title("TSB Service Ticketing")
+        st.title("Service Ticketing")
 
         db = next(get_db())
         tickets_df = TicketingDashboard.get_tickets(db)

@@ -1,6 +1,6 @@
 """
-TSB Door Service Assistant
-A Streamlit application for diagnosing and troubleshooting TSB doors.
+Door Service Assistant
+A Streamlit application for diagnosing and troubleshooting doors.
 """
 
 from setuptools import setup, find_packages
@@ -12,8 +12,6 @@ with open("requirements.txt") as f:
 setup(
     name="object-error-handling-service",
     version="1.0.0",
-    author="Respeak",
-    author_email="tim.rietz@respeak.io",
     description="Service Assistant Application",
     long_description=__doc__,
     packages=find_packages(),
@@ -22,8 +20,8 @@ setup(
     platforms="any",
     install_requires=requirements,
     python_requires=">=3.8",
-    entry_points={"console_scripts": ["tsb-door-service=service.app:main"]},
-    package_data={"tsb_door_service": ["data/*.json"]},
+    entry_points={"console_scripts": ["door-service=service.app:main"]},
+    package_data={"door_service": ["data/*.json"]},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Web Environment",

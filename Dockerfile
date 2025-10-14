@@ -20,7 +20,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the rest of the application
-COPY tsb_door_service ./tsb_door_service
+COPY door_service ./door_service
 COPY alembic.ini .
 COPY alembic ./alembic
 COPY .streamlit ./.streamlit

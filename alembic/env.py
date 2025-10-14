@@ -16,7 +16,7 @@ load_dotenv()
 config = context.config
 
 # Import the MetaData object from your models
-from tsb_door_service.database.models import Base
+from door_service.database.models import Base
 
 target_metadata = Base.metadata
 

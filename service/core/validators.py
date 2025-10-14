@@ -1,7 +1,7 @@
 """
 Validators Module
 
-This module provides validation functionality for the TSB Door Service Assistant.
+This module provides validation functionality for the Door Service Assistant.
 It includes validators for door serial numbers, error codes, and other input data.
 """
 
@@ -41,7 +41,7 @@ class DoorValidator:
     Handles validation of serial numbers, types, and other door-specific data.
     """
 
-    SERIAL_PATTERN = re.compile(r"^TSB-[SDK]-\d{5}$")
+    SERIAL_PATTERN = re.compile(r"^-[SDK]-\d{5}$")
 
     @classmethod
     def validate_door_serial(cls, serial: str) -> Tuple[bool, str, str]:
@@ -58,8 +58,8 @@ class DoorValidator:
                 - String containing a validation message
 
         Example:
-            >>> DoorValidator.validate_door_serial("TSB-S-12345")
-            (True, "Schiebetür", "Gültige TSB Schiebetür")
+            >>> DoorValidator.validate_door_serial("xxx-S-12345")
+            (True, "Schiebetür", "Gültige Schiebetür")
         """
         try:
             if not serial:
@@ -71,7 +71,7 @@ class DoorValidator:
             # Validate format
             if not cls.SERIAL_PATTERN.match(serial):
                 raise DoorSerialError(
-                    "Ungültiges Format. Erwartetes Format: TSB-X-XXXXX"
+                    "Ungültiges Format. Erwartetes Format: xxx-X-XXXXX"
                 )
 
             # Extract and validate door type
@@ -86,11 +86,11 @@ class DoorValidator:
                 return (
                     False,
                     door_type_name,
-                    f"Selbstdiagnose ist derzeit nur für TSB Schiebetüren verfügbar. "
+                    f"Selbstdiagnose ist derzeit nur für Shiebetüren verfügbar. "
                     f"Ihr Türtyp: {door_type_name}",
                 )
 
-            return True, door_type_name, "Gültige TSB Schiebetür"
+            return True, door_type_name, "Gültige Schiebetür"
 
         except ValidationError as e:
             return False, "", str(e)

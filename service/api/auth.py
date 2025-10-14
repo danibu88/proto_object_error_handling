@@ -6,7 +6,7 @@ import os
 class AuthConfig:
     def __init__(self):
         load_dotenv()
-        self.api_key = os.getenv("RESPEAK_API_KEY")
+        self.api_key = os.getenv("xxxxxxxx")
 
     @property
     def headers(self) -> dict:

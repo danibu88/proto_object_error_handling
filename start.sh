@@ -6,7 +6,7 @@ log_msg() {
     echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1"
 }
 
-log_msg "Starting TSB Door Service..."
+log_msg "Starting Door Service..."
 log_msg "Current DATABASE_URL: ${DATABASE_URL}"  # Debug line
 log_msg "Waiting for database to be ready..."
 

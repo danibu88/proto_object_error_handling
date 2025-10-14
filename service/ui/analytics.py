@@ -1,4 +1,3 @@
-# tsb_door_service/ui/analytics.py
 
 import os
 import streamlit as st
@@ -13,7 +12,7 @@ from service.database.database import get_db
 
 
 class AnalyticsDashboard:
-    """Analytics dashboard for TSB door service"""
+    """Analytics dashboard for door service"""
 
     ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 
@@ -152,7 +151,7 @@ class AnalyticsDashboard:
     @staticmethod
     def render_dashboard():
         """Render the analytics dashboard"""
-        st.title("TSB Service Analytics")
+        st.title("Service Analytics")
 
         db = next(get_db())
         data = AnalyticsDashboard.get_analytics_data(db)

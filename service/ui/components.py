@@ -1,7 +1,7 @@
 """
 View Components Module
 
-This module contains all view-related components for the TSB Door Service Assistant.
+This module contains all view-related components for the Door Service Assistant.
 It handles rendering of different screens and UI components while maintaining
 separation of concerns from the business logic.
 """
@@ -55,7 +55,7 @@ class ViewManager:
         serial = st.text_input(
             "Seriennummer eingeben:",
             key="serial_input",
-            help="Format: TSB-X-XXXXX",
+            help="Format: xxx-X-XXXXX",
             on_change=ViewManager._handle_serial_input_change,
         )
 
@@ -702,7 +702,7 @@ class ViewManager:
                 "timestamp": datetime.now(pytz.timezone("Europe/Berlin")).isoformat(),
             }
 
-            if door_type:  # If it's a valid TSB door but wrong type
+            if door_type:  # If it's a valid door but wrong type
                 st.info("Möchten Sie ein Service-Ticket erstellen?")
                 if st.button("Service-Ticket erstellen"):
                     st.rerun()
@@ -796,7 +796,7 @@ class ViewManager:
                     "Tür-Seriennummer",
                     value=door_id,
                     disabled=bool(door_data),
-                    help="Format: TSB-X-XXXXX" if not door_data else None,
+                    help="Format: xxx-X-XXXXX" if not door_data else None,
                     key="ticket_door_id",
                 )
             with col2:
@@ -887,7 +887,7 @@ class ViewManager:
             Optional[int]: The history ID if saved successfully
         """
         try:
-            from tsb_door_service.database.operations import (
+            from door_service.database.operations import (
                 save_troubleshooting_history,
                 get_session,
             )
@@ -939,7 +939,7 @@ class ViewManager:
             bool: True if ticket was created successfully
         """
         try:
-            from tsb_door_service.database.operations import (
+            from door_service.database.operations import (
                 create_service_ticket,
                 create_direct_service_ticket,
                 get_session,

@@ -1,7 +1,7 @@
 """
-TSB Door Service Assistant - Main Application
+Door Service Assistant - Main Application
 
-This is the main entry point for the TSB Door Service Assistant application.
+This is the main entry point for the Door Service Assistant application.
 It handles application initialization, routing, and overall state management.
 
 Dependencies:
@@ -15,7 +15,6 @@ Environment Variables:
     LOG_LEVEL: Logging level (default: INFO)
     DATA_DIR: Directory containing decision tree data files (default: ./data)
 
-Author: Tim Rietz | Respeak
 Version: 1.1
 """
 
@@ -49,14 +48,14 @@ APP_CONFIG = {
     "debug": os.getenv("DEBUG", "false").lower() == "true",
     "data_dir": Path(__file__).parent / "data",
     "locale": "de_DE.UTF-8",
-    "page_title": "TSB Tür Service",
+    "page_title": "Tür Service",
     "page_icon": "🚪",
 }
 
 
 class ServiceAssistant:
     """
-    Main application class for the TSB Door Service Assistant.
+    Main application class for the Door Service Assistant.
     Handles initialization, routing, and state management.
     """
 
@@ -154,7 +153,7 @@ class ServiceAssistant:
     def run(self) -> None:
         """Main application entry point and routing"""
         try:
-            st.title("TSB Tür Service Assistant")
+            st.title("Tür Service Assistant")
 
             # Show analytics or main app content
             hide_main_content = show_analytics() or show_ticketing()
@@ -165,10 +164,10 @@ class ServiceAssistant:
 
                 if current_step == "identify":
                     st.info(
-                        "ℹ️ Dies ist ein interaktives Self-Service Portal für TSB Türsysteme."
+                        "ℹ️ Dies ist ein interaktives Self-Service Portal für Türsysteme."
                     )
                     st.subheader(
-                        "Willkommen beim Self-Service Portal von TSB! Sie haben bei Ihrer Schiebetür eine Störung festgestellt? Wir geben Ihnen praktische Hinweise, um Ihre Tür wieder in Gang zu setzen. "
+                        "Willkommen beim Self-Service Portal! Sie haben bei Ihrer Schiebetür eine Störung festgestellt? Wir geben Ihnen praktische Hinweise, um Ihre Tür wieder in Gang zu setzen. "
                     )
                     ViewManager.show_door_identification()
                 elif current_step in ["troubleshoot", "error_code_input"]:

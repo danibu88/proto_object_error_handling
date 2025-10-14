@@ -14,10 +14,10 @@ services:
       - nginx-net
       - streamlit-net
     environment:
-      - VIRTUAL_HOST=tsb.respeak.io
+      - VIRTUAL_HOST=...
       - VIRTUAL_PORT=8501
-      - LETSENCRYPT_HOST=tsb.respeak.io
-      - LETSENCRYPT_EMAIL=tim.rietz@respeak.io
+      - LETSENCRYPT_HOST=...
+      - LETSENCRYPT_EMAIL=...
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -27,7 +27,6 @@ services:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - CHAT_API_URL=${CHAT_API_URL}
       - CHAT_EXPERT_ID=${CHAT_EXPERT_ID}
-      - RESPEAK_API_KEY=${RESPEAK_API_KEY}
     ports:
       - "8501:8501"
     depends_on:
