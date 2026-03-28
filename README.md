@@ -15,43 +15,55 @@ Alembic database migrations
 Docker and Docker Compose setup for local and deployed environments
 
 **Project structure**
-proto_object_error_handling/
-├── app/                         # main application package
-│   ├── __init__.py
-│   ├── main.py                  # (formerly app.py)
-│
-│   ├── domain/                  # core logic
-│   │   ├── exceptions.py
-│   │   ├── navigator.py
-│   │   └── validators.py
-│
-│   ├── infrastructure/          # technical concerns
-│   │   ├── database/
-│   │   │   ├── database.py
-│   │   │   ├── models.py
-│   │   │   └── operations.py
-│   │   └── config/
-│
-│   ├── interface/               # UI / interaction
-│   │   ├── analytics.py
-│   │   ├── chat.py
-│   │   ├── components.py
-│   │   └── ticketing.py
-│
-│   └── resources/               # static data
-│       ├── dps.jpg
-│       └── troubleshooting.json
-│
-├── alembic/
-├── docker/
-│   ├── Dockerfile
-│   ├── docker-compose.local.yml
-│   └── docker-compose.streamlit.yml
-│
-├── requirements.txt
-├── setup.py
-└── start.sh
+The project is organized into a modular application architecture separating domain logic, infrastructure, and interface components.
 
+Application layer (app/)
+
+main.py: Entry point of the application (Streamlit app)
+__init__.py: Package initialization
+
+Domain layer (app/domain/)
+
+exceptions.py: Custom exception handling
+navigator.py: Navigation logic for troubleshooting workflows
+validators.py: Input validation (e.g., error codes, identifiers)
+
+Infrastructure layer (app/infrastructure/)
+
+database/
+database.py: Database connection setup
+models.py: Data models
+operations.py: Database operations
+config/: Configuration management
+
+Interface layer (app/interface/)
+
+analytics.py: Analytics and reporting views
+chat.py: Chat interaction module
+components.py: Shared UI components
+ticketing.py: Ticketing and escalation interface
+
+Resources (app/resources/)
+
+troubleshooting.json: Troubleshooting knowledge base
+dps.jpg: Supporting asset
+
+Database migration
+
+alembic/: Database migration scripts
+
+Deployment
+
+docker/
+Dockerfile: Container definition
+docker-compose.local.yml: Local setup
+docker-compose.streamlit.yml: Deployment configuration
+
+Configuration and execution
+
+requirements.txt: Python dependencies
+setup.py: Package configuration
+start.sh: Startup script
 **How it works**
 
 The application loads a troubleshooting tree from service/data/troubleshooting.json and uses a navigator component to move the user through decision nodes, action nodes, and resolution steps.
