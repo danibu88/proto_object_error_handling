@@ -118,6 +118,7 @@ automatic Alembic migrations during startup
 Open the app at:
 
 http://localhost:8501
+
 Option 2: Run manually
 Create and activate a virtual environment
 Install dependencies
@@ -127,13 +128,13 @@ Run migrations
 Start Streamlit
 
 Example:
-
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 alembic upgrade head
 streamlit run service/app.py
-Deployment
+
+**Deployment**
 
 A second compose file, docker-compose.streamlit.yml, is included for deployment scenarios with reverse proxy related environment variables such as:
 
