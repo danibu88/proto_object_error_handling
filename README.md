@@ -16,31 +16,38 @@ Docker and Docker Compose setup for local and deployed environments
 
 **Project structure**
 proto_object_error_handling/
-├── service/
-│   ├── api/
-│   ├── config/
-│   ├── core/
+├── app/                         # main application package
+│   ├── __init__.py
+│   ├── main.py                  # (formerly app.py)
+│
+│   ├── domain/                  # core logic
 │   │   ├── exceptions.py
 │   │   ├── navigator.py
 │   │   └── validators.py
-│   ├── data/
-│   │   ├── dps.jpg
-│   │   └── troubleshooting.json
-│   ├── database/
-│   │   ├── database.py
-│   │   ├── debug_con.py
-│   │   ├── models.py
-│   │   └── operations.py
-│   ├── ui/
+│
+│   ├── infrastructure/          # technical concerns
+│   │   ├── database/
+│   │   │   ├── database.py
+│   │   │   ├── models.py
+│   │   │   └── operations.py
+│   │   └── config/
+│
+│   ├── interface/               # UI / interaction
 │   │   ├── analytics.py
 │   │   ├── chat.py
 │   │   ├── components.py
 │   │   └── ticketing.py
-│   └── app.py
+│
+│   └── resources/               # static data
+│       ├── dps.jpg
+│       └── troubleshooting.json
+│
 ├── alembic/
-├── Dockerfile
-├── docker-compose.local.yml
-├── docker-compose.streamlit.yml
+├── docker/
+│   ├── Dockerfile
+│   ├── docker-compose.local.yml
+│   └── docker-compose.streamlit.yml
+│
 ├── requirements.txt
 ├── setup.py
 └── start.sh
@@ -172,7 +179,9 @@ If the app package is indeed service, the Dockerfile may need to be adjusted.
 
 **License**
 
-Add your preferred license here.
+This project is licensed under the MIT License.
+
+This repository is provided as a research prototype and is not associated with any specific company or production system.
 
 **Contributing**
 Contributions are welcome. Please open an issue or submit a pull request for bug fixes, improvements, or documentation updates.
